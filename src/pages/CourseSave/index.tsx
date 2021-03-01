@@ -2,46 +2,46 @@ import React, { useState } from 'react'
 import { Image, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { FlatList } from 'react-native-gesture-handler';
 
-const Home = () => {
+const CourseSave = () => {
   const [value, onChangeText] = React.useState('Useless Placeholder');
   const [courses, setCourses] = useState([
     {
-      img: require('../../assets/Math.png'),
+      img: require('../../../assets/Math.png'),
       title: 'Matematica',
       subtitle: '16 Aulas',
     },
     {
-      img: require('../../assets/Math.png'),
+      img: require('../../../assets/Math.png'),
       title: 'Matematica',
       subtitle: '16 Aulas',
     },
     {
-      img: require('../../assets/Math.png'),
+      img: require('../../../assets/Math.png'),
       title: 'Matematica',
       subtitle: '16 Aulas',
     },
     {
-      img: require('../../assets/Math.png'),
+      img: require('../../../assets/Math.png'),
       title: 'Matematica',
       subtitle: '16 Aulas',
     },
     {
-      img: require('../../assets/Math.png'),
+      img: require('../../../assets/Math.png'),
       title: 'Matematica',
       subtitle: '16 Aulas',
     },
     {
-      img: require('../../assets/Math.png'),
+      img: require('../../../assets/Math.png'),
       title: 'Matematica',
       subtitle: '16 Aulas',
     },
     {
-      img: require('../../assets/Math.png'),
+      img: require('../../../assets/Math.png'),
       title: 'Matematica',
       subtitle: '16 Aulas',
     },
     {
-      img: require('../../assets/Math.png'),
+      img: require('../../../assets/Math.png'),
       title: 'Matematica',
       subtitle: '16 Aulas',
     }
@@ -53,11 +53,11 @@ const Home = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.imgHeader}>
-          <Image  source={require('../../assets/Logo.png')} />
-          <Image style={styles.imgSair} source={require('../../assets/Sair.png')} />
+          <Image  source={require('../../../assets/Logo.png')} />
+          <Image style={styles.imgSair} source={require('../../../assets/Sair.png')} />
         </View>
         <View style={styles.containerInput}>
-          <Image source={require('../../assets/Busque.png')}/>
+          <Image source={require('../../../assets/Busque.png')}/>
             <TextInput style={styles.input}
               onChangeText={text => onChangeText(text)}
               value={value}
@@ -67,7 +67,7 @@ const Home = () => {
       </View>
       <View style={styles.containerCategory}>
         <View>
-          <Text style={styles.textCategory}>Categorias</Text>
+          <Text style={styles.textCategory}>Cursos salvos</Text>
           <Text style={styles.textNumCursos}>43 cursos</Text>
         </View>
         <FlatList 
@@ -130,7 +130,9 @@ const styles = StyleSheet.create({
   containerCategory: {
     flex: 1,
     backgroundColor: '#f0edf5',
-    padding: 20
+    padding: 20,
+    borderTopEndRadius: 24,
+    borderTopStartRadius: 24
   },
 
   textCategory: {
@@ -173,4 +175,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Home;
+export default CourseSave;

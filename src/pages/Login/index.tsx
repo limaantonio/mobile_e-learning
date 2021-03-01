@@ -6,8 +6,8 @@ const Login = () => {
   return(
     <View  style={styles.container}>
       <View style={styles.imageBg}>
-      <ImageBackground source={require('../../assets/e.learning.png')} style={styles.image}>
-        <Image source={require('../../assets/Vector.png')}/>
+      <ImageBackground source={require('../../../assets/e.learning.png')} style={styles.image}>
+        <Image source={require('../../../assets/Vector.png')}/>
       </ImageBackground>
       </View>
       <View style={styles.containerText}>
