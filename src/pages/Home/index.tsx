@@ -11,28 +11,28 @@ const Home = () => {
       subtitle: '16 Aulas',
     },
     {
-       img: require('../../../assets/Math.png'),
-      title: 'Matematica',
+       img: require('../../../assets/Física.png'),
+      title: 'Física',
       subtitle: '16 Aulas',
     },
     {
-       img: require('../../../assets/Math.png'),
-      title: 'Matematica',
+       img: require('../../../assets/English.png'),
+      title: 'Inglês',
       subtitle: '16 Aulas',
     },
     {
-       img: require('../../../assets/Math.png'),
-      title: 'Matematica',
+       img: require('../../../assets/Quimica.png'),
+      title: 'Química',
       subtitle: '16 Aulas',
     },
     {
-       img: require('../../../assets/Math.png'),
-      title: 'Matematica',
+       img: require('../../../assets/Talk.png'),
+      title: 'Português',
       subtitle: '16 Aulas',
     },
     {
-       img: require('../../../assets/Math.png'),
-      title: 'Matematica',
+       img: require('../../../assets/Build.png'),
+      title: 'Engenharia',
       subtitle: '16 Aulas',
     },
     {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
 
   containerCategory: {
-    flex: 1,
+   
     backgroundColor: '#f0edf5',
     padding: 20,
     borderTopEndRadius: 24,

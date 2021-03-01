@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
 
   containerCategory: {
-    flex: 1,
+   
     backgroundColor: '#f0edf5',
     padding: 20,
     borderTopEndRadius: 24,
