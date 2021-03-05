@@ -1,8 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity,  Button } from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
+  const { navigate } = useNavigation();
+
   return(
     <View  style={styles.container}>
       <View style={styles.imageBg}>
@@ -15,7 +18,7 @@ const Login = () => {
         <Text style={styles.subtitle}>Entre na plataforma e
           acesse cursos de diversas áreas
          de conhecimento.</Text>
-         <RectButton style={styles.button}>
+         <RectButton onPress={() => navigate('LessonTabs')} style={styles.button}>
          <Text style={styles.buttonText}>Começar os Estudos</Text>
       </RectButton>
       </View>

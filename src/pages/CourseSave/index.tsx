@@ -1,68 +1,43 @@
-import React, { useState } from 'react'
-import { Image, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
-import { FlatList } from 'react-native-gesture-handler';
+import React, { useEffect, useState } from 'react';
+import {
+  Image, ScrollView, StyleSheet, Text, TextInput, View,
+} from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+
+import api from '../../services/api';
 
 const CourseSave = () => {
   const [value, onChangeText] = React.useState('Useless Placeholder');
-  const [courses, setCourses] = useState([
-    {
-      img: require('../../../assets/Math.png'),
-      title: 'Matematica',
-      subtitle: '16 Aulas',
-    },
-    {
-      img: require('../../../assets/Math.png'),
-      title: 'Matematica',
-      subtitle: '16 Aulas',
-    },
-    {
-      img: require('../../../assets/Math.png'),
-      title: 'Matematica',
-      subtitle: '16 Aulas',
-    },
-    {
-      img: require('../../../assets/Math.png'),
-      title: 'Matematica',
-      subtitle: '16 Aulas',
-    },
-    {
-      img: require('../../../assets/Math.png'),
-      title: 'Matematica',
-      subtitle: '16 Aulas',
-    },
-    {
-      img: require('../../../assets/Math.png'),
-      title: 'Matematica',
-      subtitle: '16 Aulas',
-    },
-    {
-      img: require('../../../assets/Math.png'),
-      title: 'Matematica',
-      subtitle: '16 Aulas',
-    },
-    {
-      img: require('../../../assets/Math.png'),
-      title: 'Matematica',
-      subtitle: '16 Aulas',
-    }
-  ]);
+  const [courses, setCourses] = useState([]);
 
- 
-  
+  const { navigate } = useNavigation();
+
+  function navigateToLesson() {
+    navigate('Courses');
+  }
+
+  useEffect(() => {
+    api.get('/courses').then((response) => {
+      setCourses(response.data);
+    });
+  }, [courses]);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.imgHeader}>
-          <Image  source={require('../../../assets/Logo.png')} />
+          <Image source={require('../../../assets/Logo.png')} />
           <Image style={styles.imgSair} source={require('../../../assets/Sair.png')} />
         </View>
         <View style={styles.containerInput}>
-          <Image source={require('../../../assets/Busque.png')}/>
-            <TextInput style={styles.input}
-              onChangeText={text => onChangeText(text)}
-              value={value}
-              placeholder="Busque uma aula"
-          />  
+          <Image source={require('../../../assets/Busque.png')} />
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => onChangeText(text)}
+            value={value}
+            placeholder="Busque uma aula"
+          />
         </View>
       </View>
       <View style={styles.containerCategory}>
@@ -70,23 +45,27 @@ const CourseSave = () => {
           <Text style={styles.textCategory}>Cursos salvos</Text>
           <Text style={styles.textNumCursos}>43 cursos</Text>
         </View>
-        <FlatList 
+        <FlatList
           data={courses}
-          numColumns='2'
-          style={{marginHorizontal: 2}}
-          renderItem={({item: course}) => (
-            <View style={styles.containerCourse}>
-              <Image source={course.img}/>
+          keyExtractor={(course) => String(course.id)}
+          numColumns="2"
+          style={{ marginHorizontal: 2 }}
+
+          onEndReachedThreshold={0.2}
+          renderItem={({ item: course }) => (
+            <TouchableOpacity onPress={navigateToLesson} style={styles.containerCourse}>
+              <Image style={{ width: 58, height: 60 }} source={{ uri: course.image }} />
               <View style={styles.textCategoryItem}>
-                <Text style={styles.textCategoryItemTitle}>{course.title}</Text>
+                <Text style={styles.textCategoryItemTitle}>{course.name}</Text>
                 <Text>16 Aulas</Text>
               </View>
-            </View> 
-        )}/>
+            </TouchableOpacity>
+          )}
+        />
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -103,12 +82,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position: 'relative',
 
-    
   },
 
-  imgSair:{
+  imgSair: {
     position: 'absolute',
-    right: 0
+    right: 0,
   },
 
   containerInput: {
@@ -117,43 +95,44 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 100,
     padding: 10,
-    
+
     backgroundColor: '#fff',
   },
 
-  input:{
+  input: {
     margin: 4,
     color: '#C4C4D1',
-    fontSize: 15
+    fontSize: 15,
   },
 
   containerCategory: {
-   
+
     backgroundColor: '#f0edf5',
     padding: 20,
     borderTopEndRadius: 24,
-    borderTopStartRadius: 24
+    borderTopStartRadius: 24,
   },
 
   textCategory: {
     fontSize: 20,
     lineHeight: 20,
-    color: '#3d3d4c'
+    color: '#3d3d4c',
   },
 
   textNumCursos: {
     position: 'absolute',
-    right: 0
+    right: 0,
   },
 
   containerCourse: {
     marginTop: 10,
+    width: 156,
+    height: 172,
     backgroundColor: '#fff',
-    width: '46%',
     justifyContent: 'center',
-    padding: 26,
     borderRadius: 28,
-    margin: 8
+    margin: 8,
+    paddingLeft: 20,
   },
 
   textCategoryItemTitle: {
@@ -163,16 +142,14 @@ const styles = StyleSheet.create({
 
   textCategoryItem: {
     paddingVertical: 10,
-    paddingTop: 12
+    paddingTop: 12,
   },
 
   list: {
     flexDirection: 'row',
-    
-    
-  }
 
+  },
 
-})
+});
 
 export default CourseSave;
